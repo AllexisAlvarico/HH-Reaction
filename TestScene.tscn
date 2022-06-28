@@ -4,13 +4,36 @@
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
+spawnDelayMin = 2.0
+spawnDelayMax = 6.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+[node name="ScoreLabel" type="Label" parent="HUD"]
+margin_left = 5.0
+margin_right = 200.0
+margin_bottom = 20.0
+text = "Score: "
+valign = 1
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+[node name="TimeLeftLabel" type="Label" parent="HUD"]
+margin_left = 500.0
+margin_right = 695.0
+margin_bottom = 20.0
+text = "Time Left: "
+valign = 1
 
-[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
+[node name="ReactionLabel" type="Label" parent="HUD"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 200.0
+margin_bottom = 40.0
+text = "Reaction Time: "
+valign = 1
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="EndTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
