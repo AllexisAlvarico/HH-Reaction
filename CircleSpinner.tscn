@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Shape/circle.png" type="Texture" id=1]
+[ext_resource path="res://CircleSpinner.gd" type="Script" id=2]
 
 [node name="TextureProgress" type="TextureProgress"]
 anchor_left = 0.5
@@ -15,16 +16,20 @@ min_value = -180.0
 max_value = 180.0
 value = -180.0
 texture_under = ExtResource( 1 )
-texture_progress = ExtResource( 1 )
 fill_mode = 4
 tint_under = Color( 0.329412, 0.329412, 0.329412, 1 )
 tint_progress = Color( 0.564706, 0.772549, 0.188235, 1 )
 radial_initial_angle = 270.0
+script = ExtResource( 2 )
 
 [node name="Center" type="Position2D" parent="."]
-position = Vector2( 33, 32 )
+position = Vector2( 128, 128 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[connection signal="gui_input" from="." to="." method="_on_TextureProgress_gui_input"]
+[connection signal="value_changed" from="." to="." method="_on_TextureProgress_value_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

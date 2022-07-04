@@ -1,15 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Shape/Shape.gd" type="Script" id=1]
 [ext_resource path="res://Shape/smallCircle.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/HitSound.wav" type="AudioStream" id=3]
 
 [node name="Shape" type="TextureRect"]
-modulate = Color( 1, 0.101961, 0.101961, 0 )
+modulate = Color( 1, 0.101961, 0.101961, 1 )
+margin_right = 48.0
+margin_bottom = 48.0
 rect_scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 2 )
 stretch_mode = 3
 script = ExtResource( 1 )
+inactiveColor = Color( 0.486275, 0.243137, 0.243137, 1 )
+activeColor = Color( 1, 0.101961, 0.101961, 1 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
 
 [connection signal="gui_input" from="." to="." method="_on_Shape_gui_input"]

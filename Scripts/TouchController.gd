@@ -53,7 +53,8 @@ func setupShapeGrid():
 	for i in shapesAmount:
 		var newShape = shapeScene.instance()
 		grid.add_child(newShape)
-		print("shape " + str(i) + "added")
+		newShape.modulate.a = 0.0
+		print("shape " + str(i) + " added")
 		yield(get_tree().create_timer(0.05), "timeout")
 	isGameOver = false
 	endTimer.start()
