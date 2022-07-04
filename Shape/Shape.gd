@@ -41,7 +41,7 @@ func _on_Shape_gui_input(event:InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			eventId = event.index
-			if !touchController.isGameOver && \
+			if eventId > 0 && circleSpinner.getIsActive() && !touchController.isGameOver && \
 				isActive:
 					touchController.setReactionTime(timeElapsed)
 					isActive = false

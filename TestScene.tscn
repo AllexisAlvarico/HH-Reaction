@@ -56,13 +56,15 @@ margin_bottom = 34.0
 text = "Time Left: "
 valign = 1
 
-[node name="ReactionLabel" type="Label" parent="HUD/Theme"]
+[node name="ReactionLabel" type="RichTextLabel" parent="HUD/Theme"]
 margin_left = 20.0
 margin_top = 40.0
 margin_right = 200.0
 margin_bottom = 54.0
-text = "Reaction Time: "
-valign = 1
+bbcode_enabled = true
+bbcode_text = "Reaction Time:"
+text = "Reaction Time:"
+scroll_active = false
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 60.0
