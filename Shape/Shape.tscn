@@ -1,16 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Shape/Shape.gd" type="Script" id=1]
 [ext_resource path="res://Shape/smallCircle.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/HitSound.wav" type="AudioStream" id=3]
-[ext_resource path="res://shaderTest.tres" type="Shader" id=4]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 4 )
+[ext_resource path="res://Materials/dissolve2DMaterial.tres" type="Material" id=4]
 
 [node name="Shape" type="TextureRect"]
 modulate = Color( 1, 0.101961, 0.101961, 1 )
-material = SubResource( 1 )
+material = ExtResource( 4 )
 margin_right = 48.0
 margin_bottom = 48.0
 rect_scale = Vector2( 0.01, 0.01 )
