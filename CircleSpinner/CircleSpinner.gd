@@ -42,3 +42,11 @@ func _on_TextureProgress_gui_input(event:InputEvent) -> void:
 			center.global_rotation = dir.angle()
 			value = lerp(value, rad2deg(center.global_rotation), 0.8)
 			scoreMultiplier = event.relative.length()
+			scoreMultiplier = round(scoreMultiplier)
+			
+			if scoreMultiplier > 10.0:
+				scoreMultiplier = 5.0
+			else:
+				scoreMultiplier = 1.0
+
+			touchController.setMultiplier(scoreMultiplier)

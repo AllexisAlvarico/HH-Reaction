@@ -27,8 +27,6 @@ func _process(delta: float) -> void:
 			modulate = modulate.linear_interpolate(activeColor, 0.2)
 		else:
 			modulate = modulate.linear_interpolate(inactiveColor, 0.2)
-	
-	print(material.get_shader_param("fade"))
 
 	if !isActive:
 		material.set_shader_param("fade", lerp(material.get_shader_param("fade"), 0.0, 0.08))

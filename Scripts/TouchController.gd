@@ -1,9 +1,9 @@
 extends Node2D
 
 # refs
-onready var reactionLabel = get_node("HUD/Theme/ReactionLabel")
-onready var scoreLabel = get_node("HUD/Theme/ScoreLabel")
-onready var timeLeftLabel = get_node("HUD/Theme/TimeLeftLabel")
+onready var multiplierLabel = get_node("HUD/Labels/MultiplierLabel")
+onready var scoreLabel = get_node("HUD/Labels/ScoreLabel")
+onready var timeLeftLabel = get_node("HUD/Labels/TimeLeftLabel")
 onready var endTimer = get_node("EndTimer")
 onready var grid = get_node("CanvasLayer/GridContainer")
 onready var shapeScene = preload("res://Shape/Shape.tscn")
@@ -11,10 +11,7 @@ onready var shapeScene = preload("res://Shape/Shape.tscn")
 var screenSize := OS.get_window_safe_area()
 var rng := RandomNumberGenerator.new()
 
-var reactionTime := 0.0
 var score := 0.0
-
-var spawnDelay: float
 
 var isGameOver := true
 export var shapesAmount := 0
@@ -22,13 +19,16 @@ export var shapesAmount := 0
 
 func _ready() -> void:
 	scoreLabel.text = "Score: " + str(score)
-	timeLeftLabel.text = "Time Left: " + str(endTimer.time_left as int)
+	# timeLeftLabel.text = "Time Left: " + str(endTimer.time_left as int)
 	setupShapeGrid()
 
 func setScore(newScore: float) -> void:
 	score += newScore
 	score = round(score)
-	scoreLabel.text = "Score: " + str(score)
+	scoreLabel.text = "Score: " + str(score) + "pts"
+
+func setMultiplier(newMultiplier: float):
+	multiplierLabel.text = "Multiplier: x" + str(newMultiplier)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
