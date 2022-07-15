@@ -1,11 +1,12 @@
 extends Node2D
 
 # refs
-onready var multiplierLabel = get_node("HUD/Labels/MultiplierLabel")
-onready var scoreLabel = get_node("HUD/Labels/ScoreLabel")
-onready var timeLeftLabel = get_node("HUD/Labels/TimeLeftLabel")
+onready var multiplierLabel = get_node("HUD/Theme/MultiplierLabel")
+onready var scoreLabel = get_node("HUD/Theme/ScoreLabel")
+onready var timeLeftLabel = get_node("HUD/Theme/TimeLeftLabel")
 onready var endTimer = get_node("EndTimer")
 onready var grid = get_node("CanvasLayer/GridContainer")
+onready var quitConfirm = get_node("HUD/Theme/WindowDialog")
 onready var shapeScene = preload("res://Shape/Shape.tscn")
 
 var screenSize := OS.get_window_safe_area()
@@ -49,3 +50,18 @@ func setupShapeGrid():
 
 func _on_EndTimer_timeout() -> void:
 	isGameOver = true
+
+
+func _on_QuitButton_button_up() -> void:
+	quitConfirm.show()
+	get_tree().paused = true
+
+
+func _on_WindowDialog_confirmed() -> void:
+	get_tree().root.get_node("Root").queue_free()
+	get_tree().paused = false
+	get_tree().change_scene("res://Scenes/MenuScene.tscn")
+
+
+func _on_WindowDialog_hide() -> void:
+	get_tree().paused = false
