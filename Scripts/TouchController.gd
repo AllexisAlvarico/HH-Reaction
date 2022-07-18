@@ -52,12 +52,12 @@ func _on_QuitButton_button_up() -> void:
 	quitConfirm.show()
 	get_tree().paused = true
 
-
-func _on_WindowDialog_confirmed() -> void:
+func _on_ConfirmButton_button_up() -> void:
 	get_tree().root.get_node("Root").queue_free()
 	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/MenuScene.tscn")
 
 
-func _on_WindowDialog_hide() -> void:
+func _on_CancelButton_button_up() -> void:
+	quitConfirm.hide()
 	get_tree().paused = false

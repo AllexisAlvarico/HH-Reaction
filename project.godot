@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Reaction Test"
-run/main_scene="res://Scenes/TestScene.tscn"
+run/main_scene="res://Scenes/MenuScene.tscn"
 config/icon="res://Misc/icon.png"
 
 [display]
