@@ -31,10 +31,6 @@ func setScore(newScore: float) -> void:
 func setMultiplier(newMultiplier: float):
 	multiplierLabel.text = "Multiplier: x" + str(newMultiplier)
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
-
 func _process(_delta: float) -> void:
 	if !isGameOver:
 		timeLeftLabel.text = "Time Left: " + str(endTimer.time_left as int)
