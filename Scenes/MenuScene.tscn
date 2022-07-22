@@ -1,42 +1,57 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Misc/theme.tres" type="Theme" id=2]
+[ext_resource path="res://Menu/blackboard.jpg" type="Texture" id=3]
+[ext_resource path="res://Menu/ReactionTestTitle.png" type="Texture" id=4]
 
 [node name="Root" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 
-[node name="Title" type="RichTextLabel" parent="."]
-margin_left = 232.0
-margin_top = 40.0
-margin_right = 346.0
-margin_bottom = 53.0
-rect_scale = Vector2( 5, 5 )
-text = "REACTION TEST"
-scroll_active = false
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 509.469, 304.001 )
+rotation = 1.5708
+scale = Vector2( 0.82609, 1.12564 )
+texture = ExtResource( 3 )
 
-[node name="PlayButton" type="Button" parent="."]
-margin_left = 232.0
-margin_top = 160.0
-margin_right = 696.0
-margin_bottom = 208.0
+[node name="Control" type="Control" parent="."]
+margin_left = 256.0
+margin_top = 256.0
+margin_right = 768.0
+margin_bottom = 512.0
+
+[node name="PlayButton" type="Button" parent="Control"]
+anchor_right = 1.0
+margin_bottom = 45.0
 text = "PLAY"
 
-[node name="HelpButton" type="Button" parent="."]
-margin_left = 232.0
-margin_top = 232.0
-margin_right = 696.0
-margin_bottom = 280.0
+[node name="HelpButton" type="Button" parent="Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -22.5
+margin_bottom = 22.5
 text = "HOW TO PLAY"
 
-[node name="BackButton" type="Button" parent="."]
-margin_left = 232.0
-margin_top = 304.0
-margin_right = 696.0
-margin_bottom = 352.0
+[node name="BackButton" type="Button" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -45.0
 text = "BACK"
 
-[connection signal="button_up" from="PlayButton" to="." method="_on_PlayButton_button_up"]
-[connection signal="button_up" from="HelpButton" to="." method="_on_HelpButton_button_up"]
-[connection signal="button_up" from="BackButton" to="." method="_on_BackButton_button_up"]
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -170.5
+margin_top = 100.0
+margin_right = 170.5
+margin_bottom = 43.0
+texture = ExtResource( 4 )
+
+[connection signal="button_up" from="Control/PlayButton" to="." method="_on_PlayButton_button_up"]
+[connection signal="button_up" from="Control/HelpButton" to="." method="_on_HelpButton_button_up"]
+[connection signal="button_up" from="Control/BackButton" to="." method="_on_BackButton_button_up"]
