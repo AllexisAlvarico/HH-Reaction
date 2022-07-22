@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://Fonts/Legionary.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://chalkButtonStyle.tres" type="StyleBox" id=2]
+[ext_resource path="res://Theme/chalkButtonStyle.tres" type="StyleBox" id=2]
 [ext_resource path="res://Menu/chalkButton.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxTexture" id=3]
