@@ -12,9 +12,9 @@ theme = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 509.469, 304.001 )
+position = Vector2( 513.177, 300.293 )
 rotation = 1.5708
-scale = Vector2( 0.82609, 1.12564 )
+scale = Vector2( 0.836166, 1.1337 )
 texture = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="."]
@@ -22,6 +22,15 @@ margin_left = 256.0
 margin_top = 216.0
 margin_right = 768.0
 margin_bottom = 512.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -52.0
+margin_top = -96.0
+margin_right = 52.0
+margin_bottom = -53.0
+texture = ExtResource( 4 )
 
 [node name="DescriptionLabel" type="Label" parent="Control"]
 anchor_right = 1.0
@@ -38,14 +47,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -45.0
 text = "RETURN"
-
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -52.0
-margin_top = 120.0
-margin_right = 52.0
-margin_bottom = 163.0
-texture = ExtResource( 4 )
 
 [connection signal="button_up" from="Control/Button" to="." method="_on_Button_button_up"]

@@ -50,6 +50,7 @@ func _on_EndTimer_timeout() -> void:
 
 func _on_QuitButton_button_up() -> void:
 	quitConfirm.show()
+	$HUD/Theme/WindowDialog/ConfirmButton.grab_focus()
 	get_tree().paused = true
 
 func _on_ConfirmButton_button_up() -> void:
