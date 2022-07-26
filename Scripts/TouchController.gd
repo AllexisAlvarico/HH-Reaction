@@ -39,7 +39,9 @@ func setupShapeGrid():
 	for i in shapesAmount:
 		var newShape = shapeScene.instance()
 		grid.add_child(newShape)
-		newShape.modulate.a = 0.0
+		# newShape.rect_scale.x = 0.01
+		# newShape.rect_scale.y = 0.01
+		# newShape.modulate.a = 0.0
 		yield(get_tree().create_timer(0.01), "timeout")
 	isGameOver = false
 	endTimer.start()

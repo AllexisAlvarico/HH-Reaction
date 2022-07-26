@@ -17,19 +17,18 @@ var isActive := true
 onready var tween := get_node("Tween")
 
 func _ready() -> void:
+	modulate = activeColor
+	modulate.a = 0.0
 	tween.interpolate_property(self, "modulate:a", 0.0, 1.0, 0.1, Tween.TRANS_CUBIC, Tween.EASE_OUT_IN)
 	tween.start()
 
 func _process(delta: float) -> void:
 	timeElapsed += delta
-	if !touchController.isGameOver && isActive:
+	if touchController != null && !touchController.isGameOver && isActive:
 		if circleSpinner.getIsActive():
 			modulate = modulate.linear_interpolate(activeColor, 0.2)
 		else:
 			modulate = modulate.linear_interpolate(inactiveColor, 0.2)
-
-	if !isActive:
-		material.set_shader_param("fade", lerp(material.get_shader_param("fade"), 0.0, 0.08))
 
 func _on_Shape_gui_input(event:InputEvent) -> void:
 	if event is InputEventScreenTouch:

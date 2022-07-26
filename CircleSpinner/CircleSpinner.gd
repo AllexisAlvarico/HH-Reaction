@@ -9,13 +9,18 @@ var isActive := false
 var eventId := -1
 
 var scoreMultiplier: float
+var scoreMultiplierSpeed := 0.0
 
 func _physics_process(_delta: float) -> void:
 	if !isActive:
 		value = -180.0
-		tint_under = tint_under.linear_interpolate(Color(0.33, 0.33, 0.33), 0.2)
+		tint_under = tint_under.linear_interpolate(Color(0.83, 0.83, 0.83), 0.2)
+		scoreMultiplier = max(0.0, scoreMultiplier - 0.5)
 	else:
-		tint_under = tint_under.linear_interpolate(Color(0.53, 0.53, 0.53), 0.2)
+		tint_under = tint_under.linear_interpolate(Color(1, 1, 1), 0.2)
+		scoreMultiplier = min(5.0, scoreMultiplier + scoreMultiplierSpeed)
+	touchController.setMultiplier(scoreMultiplier)
+
 
 
 func _on_TextureProgress_value_changed(_value:float) -> void:
@@ -35,18 +40,14 @@ func _on_TextureProgress_gui_input(event:InputEvent) -> void:
 			eventId = event.index
 		else:	
 			eventId = -1
-			scoreMultiplier = 0
 	elif event is InputEventScreenDrag:
 		if eventId == event.index && !touchController.isGameOver:
 			var dir = (get_global_mouse_position() - center.global_position).normalized()
 			center.global_rotation = dir.angle()
 			value = lerp(value, rad2deg(center.global_rotation), 0.8)
-			scoreMultiplier = event.relative.length()
-			scoreMultiplier = round(scoreMultiplier)
-			
-			if scoreMultiplier > 10.0:
-				scoreMultiplier = 5.0
-			else:
-				scoreMultiplier = 1.0
+			# $DoorwheelTexture.rotate(value)
+			set_rotation(lerp_angle(get_rotation(), center.global_rotation, 0.2))
+			# scoreMultiplier = round(scoreMultiplier)
+			scoreMultiplierSpeed = event.relative.length() / 1000
+			print(scoreMultiplierSpeed)
 
-			touchController.setMultiplier(scoreMultiplier)
