@@ -62,14 +62,18 @@ margin_left = 500.0
 margin_top = 20.0
 margin_right = 695.0
 margin_bottom = 47.0
-text = "Time Left: "
+text = "Time Spent: "
 valign = 1
 
 [node name="MultiplierLabel" type="Label" parent="HUD/Theme"]
-margin_left = 20.0
-margin_top = 60.0
-margin_right = 215.0
-margin_bottom = 87.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -245.0
+margin_top = 122.0
+margin_right = -92.0
+margin_bottom = 149.0
 text = "Multiplier: x0"
 valign = 1
 
@@ -167,10 +171,6 @@ margin_top = -520.0
 margin_right = 0.0
 margin_bottom = 0.0
 
-[node name="EndTimer" type="Timer" parent="."]
-wait_time = 60.0
-
 [connection signal="button_up" from="HUD/Theme/WindowDialog/ConfirmButton" to="." method="_on_ConfirmButton_button_up"]
 [connection signal="button_up" from="HUD/Theme/WindowDialog/CancelButton" to="." method="_on_CancelButton_button_up"]
 [connection signal="button_up" from="HUD/Theme/CanvasLayer/QuitButton" to="." method="_on_QuitButton_button_up"]
-[connection signal="timeout" from="EndTimer" to="." method="_on_EndTimer_timeout"]

@@ -16,12 +16,18 @@ var score := 0.0
 
 var isGameOver := true
 export var shapesAmount := 0
+var shapesTouched := 0
+
+var timeSpent := 0.0
 
 
 func _ready() -> void:
 	scoreLabel.text = "Score: " + str(score)
-	# timeLeftLabel.text = "Time Left: " + str(endTimer.time_left as int)
 	setupShapeGrid()
+
+func shapeTouched():
+	shapesTouched += 1
+	if shapesTouched >= shapesAmount: isGameOver = true
 
 func setScore(newScore: float) -> void:
 	score += newScore
@@ -29,26 +35,19 @@ func setScore(newScore: float) -> void:
 	scoreLabel.text = "Score: " + str(score) + "pts"
 
 func setMultiplier(newMultiplier: float):
-	multiplierLabel.text = "Multiplier: x" + str(newMultiplier)
+	multiplierLabel.text = "Multiplier: x" + str(stepify(newMultiplier, 0.01))
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if !isGameOver:
-		timeLeftLabel.text = "Time Left: " + str(endTimer.time_left as int)
+		timeSpent += delta
+		timeLeftLabel.text = "Time Spent: " + str(stepify(timeSpent, 0.01))
 
 func setupShapeGrid():
 	for i in shapesAmount:
 		var newShape = shapeScene.instance()
 		grid.add_child(newShape)
-		# newShape.rect_scale.x = 0.01
-		# newShape.rect_scale.y = 0.01
-		# newShape.modulate.a = 0.0
 		yield(get_tree().create_timer(0.01), "timeout")
 	isGameOver = false
-	endTimer.start()
-
-func _on_EndTimer_timeout() -> void:
-	isGameOver = true
-
 
 func _on_QuitButton_button_up() -> void:
 	quitConfirm.show()

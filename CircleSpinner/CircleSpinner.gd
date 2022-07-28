@@ -15,10 +15,10 @@ func _physics_process(_delta: float) -> void:
 	if !isActive:
 		value = -180.0
 		tint_under = tint_under.linear_interpolate(Color(0.83, 0.83, 0.83), 0.2)
-		scoreMultiplier = max(0.0, scoreMultiplier - 0.5)
+		scoreMultiplier = max(0.0, scoreMultiplier - 0.05)
 	else:
 		tint_under = tint_under.linear_interpolate(Color(1, 1, 1), 0.2)
-		scoreMultiplier = min(5.0, scoreMultiplier + scoreMultiplierSpeed)
+		scoreMultiplier = min(10.0, scoreMultiplier + scoreMultiplierSpeed)
 	touchController.setMultiplier(scoreMultiplier)
 
 
@@ -48,6 +48,6 @@ func _on_TextureProgress_gui_input(event:InputEvent) -> void:
 			# $DoorwheelTexture.rotate(value)
 			set_rotation(lerp_angle(get_rotation(), center.global_rotation, 0.2))
 			# scoreMultiplier = round(scoreMultiplier)
-			scoreMultiplierSpeed = event.relative.length() / 1000
+			scoreMultiplierSpeed = event.relative.length() / 5000
 			print(scoreMultiplierSpeed)
 

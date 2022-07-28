@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	timeElapsed += delta
-	if touchController != null && !touchController.isGameOver && isActive:
+	if touchController != null:
 		if circleSpinner.getIsActive():
 			modulate = modulate.linear_interpolate(activeColor, 0.2)
 		else:
@@ -38,11 +38,14 @@ func _on_Shape_gui_input(event:InputEvent) -> void:
 				isActive:
 					isActive = false
 					touchController.setScore(circleSpinner.scoreMultiplier)
+					activeColor = inactiveColor
+					touchController.shapeTouched()
 					# modulate.a = 0.0
-					var explosion = explosionScene.instance()
-					get_tree().root.add_child(explosion)
-					explosion.position = rect_global_position + rect_size / 2.0
-					explosion.emitting = true
+					# var explosion = explosionScene.instance()
+					# get_tree().root.add_child(explosion)
+					# explosion.position = rect_global_position + rect_size / 2.0
+					# explosion.emitting = true
+					$AnimationPlayer.play("Spin")
 					playSound()
 		else:
 			eventId = -1

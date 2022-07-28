@@ -1,23 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Shape/Shape.gd" type="Script" id=1]
 [ext_resource path="res://Peg/woodenPeg.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/HitSound.wav" type="AudioStream" id=3]
-
-[sub_resource type="Animation" id=1]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 5.64868 ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Spin"
@@ -48,9 +33,9 @@ tracks/1/keys = {
 }
 
 [node name="Shape" type="TextureRect"]
+modulate = Color( 0.870588, 0.870588, 0.870588, 1 )
 margin_right = 48.0
 margin_bottom = 48.0
-rect_rotation = 5.64868
 rect_pivot_offset = Vector2( 24, 25 )
 texture = ExtResource( 2 )
 stretch_mode = 3
@@ -65,7 +50,6 @@ stream = ExtResource( 3 )
 volume_db = -10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 1 )
 anims/Spin = SubResource( 2 )
 
 [connection signal="gui_input" from="." to="." method="_on_Shape_gui_input"]
